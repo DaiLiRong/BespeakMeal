@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BespeakMeal.Test", "BespeakMealTest\BespeakMeal.Test.csproj", "{EDF9E8A5-E0A5-4EDA-9706-23E333E0A558}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6510FD41-B380-4391-9C81-C5BA2B630868}"
+	ProjectSection(SolutionItems) = preProject
+		BespeakMealTest.vsmdi = BespeakMealTest.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BespeakMeal.Domain", "BespeakMeal.Domain\BespeakMeal.Domain.csproj", "{6E452334-90EA-4661-8406-1D2CD9DB3BD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BespeakMeal.Data", "BespeakMeal.Data\BespeakMeal.Data.csproj", "{05933168-4478-40B4-A87E-E3AE152BBFF2}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = BespeakMealTest.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDF9E8A5-E0A5-4EDA-9706-23E333E0A558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF9E8A5-E0A5-4EDA-9706-23E333E0A558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF9E8A5-E0A5-4EDA-9706-23E333E0A558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF9E8A5-E0A5-4EDA-9706-23E333E0A558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E452334-90EA-4661-8406-1D2CD9DB3BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E452334-90EA-4661-8406-1D2CD9DB3BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E452334-90EA-4661-8406-1D2CD9DB3BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E452334-90EA-4661-8406-1D2CD9DB3BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05933168-4478-40B4-A87E-E3AE152BBFF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05933168-4478-40B4-A87E-E3AE152BBFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05933168-4478-40B4-A87E-E3AE152BBFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05933168-4478-40B4-A87E-E3AE152BBFF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
