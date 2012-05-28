@@ -17,5 +17,10 @@
     <property name ="CreateTime"/>
     <property name ="SuperUser"/>
     <property name ="Status"/>
+    <!-- 一对多关系：User有一个或多个Orders-->
+    <set name="Orders" table="Order" generic="true" inverse="true">
+      <key column="User" foreign-key="FK_UserOrders"/>
+      <one-to-many class="Order"/>
+    </set>
   </class>
 </hibernate-mapping>

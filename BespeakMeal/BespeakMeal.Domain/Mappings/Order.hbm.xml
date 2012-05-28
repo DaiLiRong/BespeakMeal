@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+   assembly="BespeakMeal.Domain"
+   namespace="BespeakMeal.Domain.Entities">
+
+  <class name ="Order" table="tbl_order">
+    <id name="OrderId" column ="OrderId">
+      <generator class ="native"/>
+    </id>
+    <!--property name ="UserId"/-->
+    <property name ="OrderTime"/>
+    <property name ="EatType"/>
+    <property name ="Address"/>
+    <property name ="OtherRequest"/>
+    <!--多对一关系：Orders属于一个Customer-->
+    <many-to-one name="UserId" column="UserId" not-null="true"
+                 class="User" foreign-key="FK_UserOrders"/>
+  </class>
+</hibernate-mapping>
