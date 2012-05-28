@@ -1,1 +1,8 @@
-建立db_bespeakmeal数据库，新建用户注册表tbl_user，使用NHibernate建立数据对象持久化，进行数据库连接、查询测试。
+commit_1:
+建立db_bespeakmeal数据库，新建用户注册表tbl_user；
+使用NHibernate建立数据对象持久化，进行数据库连接、查询测试。
+
+commit_2:
+在commit_1的数据库上面新建数据表tbl_order,tbl_food,tbl_foodlist,分别对应订单表，菜肴表和订单-菜肴表；
+对User、Order表进行领域分析，创建数据模型，对于User表和Order表中的多对一关系编写数据属性，并在mapping中创建一对多关系；
+对User表和Order表进行基本的创建、查询操作。
