@@ -6,3 +6,8 @@ commit_2:
 在commit_1的数据库上面新建数据表tbl_order,tbl_food,tbl_foodlist,分别对应订单表，菜肴表和订单-菜肴表；
 对User、Order表进行领域分析，创建数据模型，对于User表和Order表中的多对一关系编写数据属性，并在mapping中创建一对多关系；
 对User表和Order表进行基本的创建、查询操作。
+
+commit_3:
+修改了数据表的某些结构和名字，tbl_order中加入了status字段，以区分历史订单、新订单和无效订单；
+编写Food表和OrderFood表的数据模型；
+对Food表和OrderFood表进行基本的测试。

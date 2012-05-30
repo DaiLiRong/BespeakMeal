@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodData.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="OrderData.cs" />
+    <Compile Include="OrderFoodData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserData.cs" />
   </ItemGroup>

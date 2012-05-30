@@ -7,13 +7,19 @@
     <id name="OrderId" column ="OrderId">
       <generator class ="native"/>
     </id>
-    <!--property name ="UserId"/-->
+    <property name ="UserId"/>
     <property name ="OrderTime"/>
     <property name ="EatType"/>
     <property name ="Address"/>
     <property name ="OtherRequest"/>
-    <!--多对一关系：Orders属于一个Customer-->
-    <many-to-one name="UserId" column="UserId" not-null="true"
-                 class="User" foreign-key="FK_UserOrders"/>
+    <property name ="status"/>
+    <!--多对一关系：Orders属于一个User-->
+    <many-to-one name="User" 
+                 column="UserId" 
+                 not-null="true"
+                 class="User"
+                 foreign-key="FK_UserOrders"/>
+    <!--多对多关系：Order有多个Foods-->
+
   </class>
 </hibernate-mapping>

@@ -58,12 +58,24 @@ namespace BespeakMeal.Data
 		}
 
 		/// <Delete>
-		/// 通过UserId删除数据库中Id号跟User的Id一样的项
+		/// 通过User删除数据库中的项
 		/// </Delete>
 		public void DeleteUser(User user)
 		{
-			Session.Delete(user);
-			Session.Flush();
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Delete(user);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
 		}
 
 		/// <Update>
@@ -71,8 +83,20 @@ namespace BespeakMeal.Data
 		/// </Update>
 		public void UpdateUser(User user)
 		{
-			Session.Update(user);
-			Session.Flush();
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Update(user);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
 		}
 
 		/// <SaveOrUpdate>
@@ -80,12 +104,43 @@ namespace BespeakMeal.Data
 		/// </SaveOrUpdate>
 		public void SaveOrUpdateUser(IList<User> user)
 		{
-			foreach (var c in user)
+			using (ITransaction tx = Session.BeginTransaction())
 			{
-				Session.SaveOrUpdate(c);
+				try
+				{
+					foreach (var u in user)
+					{
+						Session.SaveOrUpdate(u);
+					}
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
 			}
-			Session.Flush();
 		}
+
+		/// <summary>
+		/// 通过UserId获取用户所有订单
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <returns></returns>
+		/*public IList<Order> GetOrdersByUserId(int userId)
+		{
+			return Session.Get<IList<Order>>(userId);
+			//return Session.CreateQuery("select Orders from User u where u.UserId = :userId")
+			//	.SetInt32("userId", userId)
+			//	.List<Order>();
+		}*/
+
+		/*public IList<User> GetUsersWithOrders(DateTime orderTime)
+		{
+			return Session.CreateQuery("select distinct u from User u inner join u.Orders o where o.OrderTime > :orderTime")
+				.SetDateTime("orderTime", orderTime).List<User>();
+		}*/
 
 		#endregion
 	}

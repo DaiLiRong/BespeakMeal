@@ -3,11 +3,11 @@
    assembly="BespeakMeal.Domain"
    namespace="BespeakMeal.Domain.Entities">
 
-  <class name ="User" table="tbl_user">
+  <class name ="BespeakMeal.Domain.Entities.User,BespeakMeal.Domain" table="tbl_user">
     <id name="UserId" column ="UserId">
       <generator class ="native"/>
     </id>
-    <property name ="UserName"/>
+    <property name ="UserName" unique="true"/>
     <property name ="Password"/>
     <property name ="FirstName"/>
     <property name ="LastName"/>
@@ -18,8 +18,11 @@
     <property name ="SuperUser"/>
     <property name ="Status"/>
     <!-- 一对多关系：User有一个或多个Orders-->
-    <set name="Orders" table="Order" generic="true" inverse="true">
-      <key column="User" foreign-key="FK_UserOrders"/>
+    <set name="Orders" 
+         table="'tbl_order'" 
+         generic="true" 
+         inverse="true">
+      <key column="UserId" foreign-key="FK_UserOrders"/>
       <one-to-many class="Order"/>
     </set>
   </class>
