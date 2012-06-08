@@ -21,7 +21,7 @@ namespace BespeakMeal.Domain.Entities
 
 		//多对一关系：Orders属于一个User
 		//访问对象方式：通过父对象成员访问：Order.User
-		public virtual User User { get; set; }
+		//public virtual User User { get; set; }
 
 		//一对多关系：Order有多个Foods
 		//public virtual IList<Food> Foods { get; set; }

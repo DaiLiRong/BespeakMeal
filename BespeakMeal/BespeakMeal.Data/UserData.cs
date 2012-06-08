@@ -9,11 +9,15 @@ using BespeakMeal.Domain.Entities;
 namespace BespeakMeal.Data
 {
 	public class UserData
-	{
+	{		
 		protected ISession Session { get; set; }
 		public UserData(ISession session)
 		{
 			Session = session;
+		}
+		public UserData()
+		{
+			Session = new NHibernateHelper().GetSession();
 		}
 
 		#region TBL_User表的CURD操作
@@ -34,6 +38,7 @@ namespace BespeakMeal.Data
 				catch (HibernateException)
 				{
 					tx.Rollback();
+					return -1;
 					throw;
 				}
 			}
@@ -48,6 +53,31 @@ namespace BespeakMeal.Data
 		}
 
 		/// <Query>
+		/// 通过UserName获取User对象
+		/// </Query>
+		public IList<User> GetUserByUserName(string userName)
+		{
+			return Session.CreateQuery("from User u where u.UserName=:un")
+				.SetString("un", userName)
+				.List<User>();
+		}
+
+		/// <summary>
+		/// 传入用户名，判读是否用户名是否已经存在
+		/// </summary>
+		/// <param name="userName"></param>
+		/// <returns></returns>
+		public bool UserExist(string userName)
+		{
+			if (GetUserByUserName(userName).Count > 0)
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+
+		/// <Query>
 		/// 通过名字Firstname获取User对象
 		/// </Query>
 		public IList<User> GetUserByFirstname(string firstname)
@@ -55,6 +85,23 @@ namespace BespeakMeal.Data
 			return Session.CreateQuery("from User u where u.FirstName=:fn")
 				.SetString("fn",firstname)
 				.List<User>();
+		}
+
+		/// <summary>
+		/// 用户名密码检查用户登录
+		/// </summary>
+		/// <param name="username"></param>
+		/// <param name="password"></param>
+		/// <returns></returns>
+		public bool CorrectNamePassword(string username, string password)
+		{
+			IList<User> result=Session.CreateQuery("from User u where u.UserName=:un and u.Password=:pw")
+				.SetString("un", username).SetString("pw", password)
+				.List<User>();
+			if (0 == result.Count)
+				return false;
+			else
+				return true;
 		}
 
 		/// <Delete>

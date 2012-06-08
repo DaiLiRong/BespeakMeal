@@ -14,11 +14,11 @@
     <property name ="OtherRequest"/>
     <property name ="status"/>
     <!--多对一关系：Orders属于一个User-->
-    <many-to-one name="User" 
+    <!--many-to-one name="User" 
                  column="UserId" 
                  not-null="true"
                  class="User"
-                 foreign-key="FK_UserOrders"/>
+                 foreign-key="FK_UserOrders"/-->
     <!--多对多关系：Order有多个Foods-->
 
   </class>

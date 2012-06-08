@@ -15,7 +15,10 @@ namespace BespeakMeal.Data
 		{
 			Session = session;
 		}
-
+		public OrderData()
+		{
+			Session = new NHibernateHelper().GetSession();
+		}
 		#region TBL_Order表的CURD操作
 		/// <Create>
 		/// 通过传入Order对象，创建Order写进数据库
@@ -39,6 +42,18 @@ namespace BespeakMeal.Data
 					throw;
 				}
 			}
+		}
+
+		/// <summary>
+		/// 获取用户购物车订单，status为0
+		/// </summary>
+		/// <param name="userId"></param>
+		/// <returns></returns>
+		public IList<Order> GetOrderInProductCar(int userId)
+		{
+			return Session.CreateQuery("from Order where UserId = :userId and status = 0")
+				.SetInt32("userId", userId)
+				.List<Order>();
 		}
 
 		/// <Query>

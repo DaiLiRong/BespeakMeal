@@ -8,7 +8,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using BespeakMeal.Data;
 using BespeakMeal.Domain.Entities;
-namespace BespeakMeal.Test
+namespace UserTest
 {
 	[TestClass]
 	public class BespeakMealTest
@@ -74,60 +74,29 @@ namespace BespeakMeal.Test
 			}
 		}
 
-		/// <Query>
-		/// 通过UserId获取Order集，测试个数是否正确
-		/// </Query>
+		/// <summary>
+		/// 测试用户名、密码，以确定是否登录成功
+		/// </summary>
 		[TestMethod]
-		public void GetOrderByUserIdTest()
+		public void TestLogin()
 		{
-			IList<Order> orders = _order.GetOrdersByUserId(1);
-			Assert.AreEqual(orders.Count, 4);
+			bool result = _user.CorrectNamePassword("lion", "123");
+			Assert.IsTrue(result);
 		}
 
-		/// <OrderQuery>
-		/// 通过订单状态查询所有处于某个状态的订单列表，如历史订单(2)、新订单(1)、失效订单(0)
-		/// </OrderQuery>
+		/// <summary>
+		/// 测试：通过名字查询是否存在用户
+		/// </summary>
 		[TestMethod]
-		public void TestOrderStatus()
+		public void UserExistTest()
 		{
-			IList<Order> neworders = _order.GetNewOrder();
-			IList<Order> historyorders = _order.GetHistoryOrder();
-			IList<Order> disabledorders = _order.GetDisabledOrder();
-			Assert.AreEqual(4, neworders.Count);
-			Assert.AreEqual(0, historyorders.Count);
-			Assert.AreEqual(0, disabledorders.Count);
+			bool userexist1 = _user.UserExist("lion");
+			bool userexist2 = _user.UserExist("luo");
+			Assert.IsTrue(userexist1);
+			Assert.IsFalse(userexist2);
 		}
 
-		/// <OrderQuery>
-		/// 通过食物名字、类型查询所有满足条件的食物Food对象的列表
-		/// </OrderQuery>
-		[TestMethod]
-		public void GetFoodByNameTest()
-		{
-			IList<Food> foodbyname = _food.GetFoodByName("鱼香茄子");
-			IList<Food> foodbytype = _food.GetFoodByFoodType("粤菜");
-			Assert.AreEqual(1, foodbyname.Count);
-			Assert.AreEqual(1, foodbytype.Count);
-			Assert.AreEqual("川菜", foodbyname.First().FoodType);
-			Assert.AreEqual("梅菜扣肉", foodbytype.First().FoodName);
-		}
 
-		/// <OrderFoodQuery>
-		/// 通过订单ID获取食物列表的测试
-		/// </OrderFoodQuery>
-		[TestMethod]
-		public void GetFoodListByOrderIdTest()
-		{
-			IList<OrderFood> foodlist = _orderFood.GetOrderFoodListByOrderId(8);
-			Assert.AreEqual(2, foodlist.Count);
-		}
-
-		/*[TestMethod]
-		public void GetOrdersByUserIdTest()
-		{
-			IList<Order> tempOrders = _user.GetOrdersByUserId(1);
-			Assert.AreEqual(4, tempOrders.Count);
-		}*/
 
 		/*[TestMethod]
 		public void GetUserByOrderIdTest()
@@ -228,46 +197,6 @@ namespace BespeakMeal.Test
 
 			int testListCount = _user.GetUserByFirstname("娟").Count;
 			Assert.AreEqual(users.Count, testListCount);
-		}*/
-
-		/// <Create>
-		/// 通过传入Order对象，创建Order写进数据库，进行测试
-		/// </Create>
-		/*[TestMethod]
-		public void CreateOrderTest()
-		{
-			//IList<Food> tempFoodList = null;
-			//tempFoodList.Add(_food.GetFoodById(1));
-			var tempOrder = new Order
-			{
-				User = _user.GetUserById(1),
-				OrderTime = DateTime.Now,
-				EatType = "外卖",
-				Address = "暨大北门",
-				Foods = new List<Food> { _food.GetFoodById(1), _food.GetFoodById(2) },
-			};
-
-			int id = _order.CreateOrder(tempOrder);
-			var testOrder = _order.GetOrderById(id);
-			Assert.IsNotNull(testOrder);
-		}*/
-
-		/// <Create>
-		/// 通过传入Food对象，创建Food写进数据库，进行测试
-		/// </Create>
-		/*[TestMethod]
-		public void CreateFoodTest()
-		{
-			var tempFood = new Food
-			{
-				FoodName = "梅菜扣肉",
-				FoodPrice = 11.0,
-				FoodType = "粤菜",
-				FoodContent = "梅菜扣肉即我们常称之烧白，因地域不同而名字颇多，其特点在于颜色酱红油亮，汤汁黏稠鲜美，扣肉滑溜醇香，肥而不腻，食之软烂醇香。"
-			};
-			int id = _food.CreateFood(tempFood);
-			var testFood = _food.GetFoodById(id);
-			Assert.IsNotNull(testFood);
 		}*/
 	}
 }

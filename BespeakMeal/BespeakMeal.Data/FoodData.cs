@@ -6,6 +6,7 @@ using System.Text;
 using NHibernate;
 using NHibernate.Cfg;
 using BespeakMeal.Domain.Entities;
+using BespeakMeal.Data;
 namespace BespeakMeal.Data
 {
 	public class FoodData
@@ -15,7 +16,10 @@ namespace BespeakMeal.Data
 		{
 			Session = session;
 		}
-
+		public FoodData()
+		{
+			Session = new NHibernateHelper().GetSession();
+		}
 		#region tbl_food表的CURD操作
 
 		/// <Create>
@@ -40,6 +44,15 @@ namespace BespeakMeal.Data
 					throw;
 				}
 			}
+		}
+
+		/// <summary>
+		/// 返回所有食物列表
+		/// </summary>
+		/// <returns></returns>
+		public IList<Food> GetAllFood()
+		{
+			return Session.CreateQuery("from Food").List<Food>();
 		}
 
 		/// <Query>
