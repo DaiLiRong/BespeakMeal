@@ -108,9 +108,20 @@ public partial class IndexModule_Login : System.Web.UI.UserControl
 		//未登录
 		this.Panel2.Visible = false;
 		this.Panel1.Visible = true;
+		Response.Write("<script language=javascript>window.location.href='index.aspx';</script>");
 	}
+	//跳转到首页
 	protected void MainPage_Click(object sender, EventArgs e)
 	{
-		Response.Write("<script>window.open('index.aspx','_blank')</script>");
+		Response.Write("<script language=javascript>window.location.href='index.aspx';</script>");
+	}
+	//跳转到购物车
+	protected void MyCar_Click(object sender, EventArgs e)
+	{
+		Response.Write("<script language=javascript>window.location.href='ProductCarShow.aspx';</script>");
+	}
+	protected void LinkButton3_Click(object sender, EventArgs e)
+	{
+		Response.Write("<script language=javascript>window.location.href='UserInfo.aspx';</script>");
 	}
 }

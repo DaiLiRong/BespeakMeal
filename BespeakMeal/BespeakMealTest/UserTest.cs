@@ -56,7 +56,7 @@ namespace UserTest
 		public void GetUserByIdTest()
 		{
 			User userInfo = _user.GetUserById(1);
-			string userName = userInfo.FirstName;
+			string userName = userInfo.Name;
 			Assert.AreEqual("礼荣", userName);
 		}
 
@@ -66,11 +66,11 @@ namespace UserTest
 		[TestMethod]
 		public void GetUserByFirstnameTest()
 		{
-			IList<User> uuser = _user.GetUserByFirstname("礼荣");
+			IList<User> uuser = _user.GetUserByName("礼荣");
 			Assert.AreEqual(1, uuser.Count);
 			foreach (var c in uuser)
 			{
-				Assert.AreEqual("礼荣", c.FirstName);
+				Assert.AreEqual("礼荣", c.Name);
 			}
 		}
 

@@ -23,6 +23,8 @@ namespace BespeakMeal
 		private FoodData _food;
 		private OrderFoodData _orderFood;
 		private OrderControl _orderControl = new OrderControl();
+		private OrderFoodControl _orderFoodControl = new OrderFoodControl();
+		private UserControl1 _userControl = new UserControl1();
 		public ControlTest()
 		{
 			//
@@ -92,6 +94,64 @@ namespace BespeakMeal
 			Assert.AreEqual(orderfoodlist.Count, 1);
 			Assert.AreEqual(orderfoodlist.First().FoodId, 7);
 			Assert.AreEqual(orderfoodlist.First().FoodNum, 2);
+		}
+
+		/// <summary>
+		/// 测试：将OrderFood的IList表转换成FoodItem的IList表
+		/// OrderFood（OrderFoodId、OrderId、FoodId、FoodNum）
+		/// OrderItem（FoodId、食物名字、单价、数量、总价）
+		/// </summary>
+		[TestMethod]
+		public void GetFoodItemByOrderFoodListTest()
+		{
+			IList<OrderFood> orderfoodlist = new List<OrderFood>();
+			IList<FoodItem> fooditemlist = new List<FoodItem>();
+			
+			OrderFood of = new OrderFood
+			{
+				FoodId = 1,
+				OrderId = 2,
+				FoodNum = 2
+			};
+			orderfoodlist.Add(of);
+			fooditemlist = _orderControl.GetFoodItemByOrderFoodList(orderfoodlist);
+			Assert.AreEqual(fooditemlist.First().FoodName, "鱼香茄子");
+		}
+
+		/// <summary>
+		/// 修改订单食物份数
+		/// </summary>
+		[TestMethod]
+		public void ModifyFoodNumTest()
+		{
+			_orderFoodControl.ModifyFoodNum(1, 1, 100);
+			int foodnum = _orderFood.GetOrderFoodByOrderIdAndFoodId(8, 1).First().FoodNum;
+			Assert.AreEqual(foodnum, 100);
+		}
+
+		/// <summary>
+		/// 删除购物车中一条食物
+		/// </summary>
+		[TestMethod]
+		public void DeleteOrderFoodTest()
+		{
+			int orderid = 8;
+			int foodid = 1;
+			_orderFoodControl.DeleteOrderFood(orderid, foodid);
+			IList<OrderFood> orderfood = _orderFood.GetOrderFoodByOrderIdAndFoodId(orderid, foodid);
+			Assert.AreEqual(orderfood.Count, 0);
+		}
+
+		/// <summary>
+		/// 修改密码测试
+		/// </summary>
+		[TestMethod]
+		public void ChangePasswordTest()
+		{
+			string password = "1234";
+			_userControl.ChangePassword(1, password);
+			User u = _user.GetUserById(1);
+			Assert.AreEqual(u.Password,password);
 		}
 	}
 }

@@ -14,8 +14,7 @@ namespace BespeakMeal.Domain.Entities
 		public virtual int UserId { get; set; }
 		public virtual string UserName { get; set; }
 		public virtual string Password { get; set; }
-		public virtual string FirstName { get; set; }
-		public virtual string LastName { get; set; }
+		public virtual string Name { get; set; }
 		public virtual char Gender { get; set; }
 		public virtual string PhoneNum { get; set; }
 		public virtual string Email { get; set; }

@@ -46,6 +46,27 @@ namespace BespeakMeal.Data
 			}
 		}
 
+		/// <summary>
+		/// 删除购物车一条食物
+		/// </summary>
+		/// <param name="orderfood"></param>
+		public void DeleteOrderFood(OrderFood orderfood)
+		{
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Delete(orderfood);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
+		}
 
 		/// <Query>
 		/// 通过订单ID获取该订单的食物列表

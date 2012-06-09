@@ -9,8 +9,7 @@
     </id>
     <property name ="UserName" unique="true"/>
     <property name ="Password"/>
-    <property name ="FirstName"/>
-    <property name ="LastName"/>
+    <property name ="Name"/>
     <property name ="Gender"/>
     <property name ="PhoneNum"/>
     <property name ="Email"/>

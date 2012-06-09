@@ -78,12 +78,12 @@ namespace BespeakMeal.Data
 		}
 
 		/// <Query>
-		/// 通过名字Firstname获取User对象
+		/// 通过名字Name获取User对象
 		/// </Query>
-		public IList<User> GetUserByFirstname(string firstname)
+		public IList<User> GetUserByName(string name)
 		{
-			return Session.CreateQuery("from User u where u.FirstName=:fn")
-				.SetString("fn",firstname)
+			return Session.CreateQuery("from User u where u.Name=:fn")
+				.SetString("fn",name)
 				.List<User>();
 		}
 

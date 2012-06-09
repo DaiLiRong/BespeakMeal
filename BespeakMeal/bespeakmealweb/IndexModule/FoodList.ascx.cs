@@ -43,8 +43,8 @@ public partial class IndexModule_FoodList : System.Web.UI.UserControl
 		//从Session获取userId，从ItemIndex获取foodId，调用逻辑层的购物车
 
 		//从DataList中选择，得到foodid
-		FoodListView.SelectedIndex = e.Item.ItemIndex;
-		int foodid = FoodListView.SelectedIndex;
+		int foodselectindex = FoodListView.SelectedIndex = e.Item.ItemIndex;
+		int foodid = foodlist.ElementAt(foodselectindex).FoodId;
 		int userId = Convert.ToInt32(Session["UserId"].ToString());
 
 		//调用逻辑层实现加入购物车

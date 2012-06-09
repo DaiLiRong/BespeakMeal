@@ -82,7 +82,7 @@ namespace BespeakMeal
 		}
 
 		/// <summary>
-		/// 测试通过OrderId和FoodId修改订单食物份数
+		/// 测试通过OrderId和FoodId增加订单食物份数
 		/// </summary>
 		/*[TestMethod]
 		public void AddFoodNumTest()
@@ -91,5 +91,7 @@ namespace BespeakMeal
 			OrderFood orderfood = _orderFood.GetOrderFoodByOrderIdAndFoodId(8, 1).First();
 			Assert.AreEqual(orderfood.FoodNum, 2);
 		}*/
+
+
 	}
 }

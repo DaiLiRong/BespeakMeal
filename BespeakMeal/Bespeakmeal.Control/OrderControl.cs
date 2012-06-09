@@ -93,5 +93,36 @@ namespace BespeakMeal.Control
 			}
 			return _orderfood.GetOrderFoodListByOrderId(orderid);
 		}
+
+		/// <summary>
+		/// 传入OrderFood对象（OrderId、FoodId、FoodNum）列表
+		/// 返回食物图片（FoodId）、食物名字、单价、数量、总价
+		/// </summary>
+		/// <param name="orderfoodlist"></param>
+		/// <returns></returns>
+		public IList<FoodItem> GetFoodItemByOrderFoodList(IList<OrderFood> orderfoodlist)
+		{
+			IList<FoodItem> fooditemlist = new List<FoodItem>();
+			foreach(var v in orderfoodlist)
+			{
+				int foodid = v.FoodId;
+				string foodname = _food.GetFoodById(v.FoodId).FoodName;
+				int foodnum = v.FoodNum;
+				double foodprice = _food.GetFoodById(v.FoodId).FoodPrice;
+				double moneycount = foodnum * foodprice;
+				int orderid = v.OrderId;
+
+				//给FoodItem的各个字段赋值
+				FoodItem fooditem = new FoodItem();
+				fooditem.FoodId = foodid;
+				fooditem.FoodName = foodname;
+				fooditem.FoodNum = foodnum;
+				fooditem.FoodPrice = foodprice;
+				fooditem.MoneyCount = moneycount;
+				fooditem.OrderId = orderid;
+				fooditemlist.Add(fooditem);
+			}
+			return fooditemlist;
+		}
 	}
 }

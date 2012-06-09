@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodItem.cs" />
     <Compile Include="OrderControl.cs" />
+    <Compile Include="OrderFoodControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BespeakMeal.Data\BespeakMeal.Data.csproj">
