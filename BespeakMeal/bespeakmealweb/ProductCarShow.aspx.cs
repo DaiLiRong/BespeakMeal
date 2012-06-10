@@ -11,8 +11,21 @@ public partial class ProductCarShow : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-		
+		Panel1.Visible = false;
+		ImageButton1.Visible = true;
+		int userid = Convert.ToInt32(Session["UserId"]);
+		OrderControl oc = new OrderControl();
+		IList<OrderFood> foodlist = oc.GetProductCarFoodList(userid);
+		if (0 == foodlist.Count)
+		{
+			Panel1.Visible = true;
+			ImageButton1.Visible = false;
+			return;
+		}
     }
+	//购买，跳转到提交订单
+	protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+	{
 
-	
+	}
 }

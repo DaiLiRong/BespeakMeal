@@ -25,7 +25,7 @@
 
 <UC1:Login ID="Login1" runat="server" />
 
-    <div style="margin-left:100"><img src="1leBespeakMeal.jpg"/></div>
+    <div style="margin-left:100"><img alt="一乐订餐" src="1leBespeakMeal.jpg"/></div>
     <table border="1" runat="server">
 
         <tr style="margin-top:0">

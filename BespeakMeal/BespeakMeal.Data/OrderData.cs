@@ -71,7 +71,7 @@ namespace BespeakMeal.Data
 		/// </Query>
 		public IList<Order> GetOrdersByUserId(int userId)
 		{
-			return Session.CreateQuery("from Order where UserId = :userId")
+			return Session.CreateQuery("from Order where UserId = :userId and status != 0")
 				.SetInt32("userId", userId)
 				.List<Order>();
 		}
@@ -114,5 +114,27 @@ namespace BespeakMeal.Data
 		}*/
 
 		#endregion
+
+		/// <summary>
+		/// 修改更新订单
+		/// </summary>
+		/// <param name="order"></param>
+		public void UpdateOrder(Order order)
+		{
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Update(order);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
+		}
 	}
 }

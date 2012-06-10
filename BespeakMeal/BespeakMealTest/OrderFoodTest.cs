@@ -82,6 +82,17 @@ namespace BespeakMeal
 		}
 
 		/// <summary>
+		/// 查询订单的食物数量test
+		/// </summary>
+		[TestMethod]
+		public void GetFoodNumByOrderIdTest()
+		{
+			int orderid = 8;
+			int foodnum = _orderFood.GetFoodNumByOrderId(orderid);
+			Assert.AreEqual(7, foodnum);
+		}
+
+		/// <summary>
 		/// 测试通过OrderId和FoodId增加订单食物份数
 		/// </summary>
 		/*[TestMethod]
@@ -92,6 +103,14 @@ namespace BespeakMeal
 			Assert.AreEqual(orderfood.FoodNum, 2);
 		}*/
 
-
+		/// <summary>
+		/// 订单ID得到订单总金额test
+		/// </summary>
+		[TestMethod]
+		public void GetTotalByOrderIdTest()
+		{
+			double total = _orderFood.GetTotalByOrderId(8);
+			Assert.AreEqual(total, 94.0);
+		}
 	}
 }

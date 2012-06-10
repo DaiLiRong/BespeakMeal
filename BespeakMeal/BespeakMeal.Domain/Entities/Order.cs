@@ -16,6 +16,7 @@ namespace BespeakMeal.Domain.Entities
 		public virtual DateTime OrderTime { get; set; }
 		public virtual string EatType { get; set; }
 		public virtual string Address { get; set; }
+		public virtual string PhoneNum { get; set; }
 		public virtual string OtherRequest { get; set; }
 		public virtual int status { get; set; }
 

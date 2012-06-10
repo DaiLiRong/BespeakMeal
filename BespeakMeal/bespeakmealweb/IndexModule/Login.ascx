@@ -22,7 +22,7 @@
         <asp:Label ID="Label2" runat="server" Text="欢迎使用订餐系统"></asp:Label>
         <asp:LinkButton ID="LinkButton3" runat="server" onclick="LinkButton3_Click">我的信息</asp:LinkButton>
         <asp:LinkButton ID="MyCar" runat="server" Text="我的购物车" onclick="MyCar_Click"></asp:LinkButton>
-        <asp:LinkButton ID="LinkButton2" runat="server">我的订单</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="~/MyOrder.aspx">我的订单</asp:LinkButton>
         <asp:LinkButton ID="Manager" runat="server" Visible="false">管理员入口</asp:LinkButton>
         <asp:LinkButton ID="Logout" runat="server" onclick="Logout_Click">退出</asp:LinkButton>
     </asp:Panel>

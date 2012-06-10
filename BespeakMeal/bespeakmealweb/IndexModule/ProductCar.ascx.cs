@@ -18,11 +18,17 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 	}
     protected void Page_Load(object sender, EventArgs e)
     {
+		Panel1.Visible = true;
 		userid = Convert.ToInt32(Session["UserId"]);
 		//获取购物车信息：食物图片、食物名字、单价、数量、总价
 		//从OrderFood中获取的项有：订单Id（购物车）、食物Id、数量
 		OrderControl oc = new OrderControl();
 		foodlist = oc.GetProductCarFoodList(userid);
+		if (0 == foodlist.Count)
+		{
+			Panel1.Visible = false;
+			return;
+		}
 		fooditemlist = oc.GetFoodItemByOrderFoodList(foodlist);
 
 		double totalmomey = GetTotalMomey(fooditemlist);
@@ -132,10 +138,5 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 
 		ofc.DeleteOrderFood(orderid, foodid);
 		Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
-	}
-	//购买，跳转到提交订单
-	protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
-	{
-
 	}
 }

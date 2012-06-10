@@ -153,5 +153,16 @@ namespace BespeakMeal
 			User u = _user.GetUserById(1);
 			Assert.AreEqual(u.Password,password);
 		}
+
+		/// <summary>
+		/// 提交订单测试
+		/// </summary>
+		[TestMethod]
+		public void SubmitOrderTest()
+		{
+			_orderControl.SubmitOrder(1,"","","");
+			IList<Order> productcar = _order.GetOrderInProductCar(1);
+			Assert.AreEqual(0, productcar.Count);
+		}
 	}
 }

@@ -111,9 +111,9 @@ namespace BespeakMeal.Control
 				double foodprice = _food.GetFoodById(v.FoodId).FoodPrice;
 				double moneycount = foodnum * foodprice;
 				int orderid = v.OrderId;
-
-				//给FoodItem的各个字段赋值
+				//要放在循环里面new，因为List的Add仅仅保存它的指针，放在外面的话，所有的对象都是指向同一个内存空间
 				FoodItem fooditem = new FoodItem();
+				//给FoodItem的各个字段赋值
 				fooditem.FoodId = foodid;
 				fooditem.FoodName = foodname;
 				fooditem.FoodNum = foodnum;
@@ -123,6 +123,70 @@ namespace BespeakMeal.Control
 				fooditemlist.Add(fooditem);
 			}
 			return fooditemlist;
+		}
+
+		/// <summary>
+		/// 提交订单，将订单状态改为1
+		/// </summary>
+		/// <param name="userid"></param>
+		public void SubmitOrder(int userid, string address, string phonenum, string otherreq)
+		{
+			IList<Order> orderlist = _order.GetOrderInProductCar(userid);
+			if (0 != orderlist.Count)
+			{
+				Order order = orderlist.First();
+				//状态1为已下单的状态
+				order.status = 1;
+				order.Address = address;
+				order.PhoneNum = phonenum;
+				order.OtherRequest = otherreq;
+				_order.UpdateOrder(order);
+			}
+		}
+
+		/// <summary>
+		/// 通过userid返回订单列表，订单类型为OrderItem，包含订单编号，下单时间，食物份数，总金额，其他要求，订单状态
+		/// </summary>
+		/// <param name="userid"></param>
+		/// <returns></returns>
+		public IList<OrderItem> GetOrderItemListByUserId(int userid)
+		{
+			IList<Order> orderlist = _order.GetOrdersByUserId(userid);
+			IList<OrderItem> orderitemlist = new List<OrderItem>();			
+			foreach(var v in orderlist)
+			{
+				DateTime d = v.OrderTime;
+				string orderreference = d.Year.ToString() + d.Month.ToString() + d.Day.ToString() +
+					d.Hour.ToString() + d.Minute.ToString() + d.Second.ToString() + "-" + v.OrderId.ToString();
+				DateTime ordertime = v.OrderTime;
+				int foodnum = _orderfood.GetFoodNumByOrderId(v.OrderId);
+				double total = _orderfood.GetTotalByOrderId(v.OrderId);
+				string otherreq = v.OtherRequest;
+				string status = "";
+				switch (v.status)
+				{
+					case 1:
+						status = "未付款";
+						break;
+					case 2:
+						status = "已付款";
+						break;
+					case 3:
+						status = "交易成功";
+						break;
+				}
+
+				//要放在循环里面new，因为List的Add仅仅保存它的指针，放在外面的话，所有的对象都是指向同一个内存空间
+				OrderItem oi = new OrderItem();
+				oi.OrderReference = orderreference;
+				oi.OrderTime = ordertime;
+				oi.FoodNum = foodnum;
+				oi.Total = total;
+				oi.OtherReq = otherreq;
+				oi.Status = status;
+				orderitemlist.Add(oi);
+			}
+			return orderitemlist;
 		}
 	}
 }

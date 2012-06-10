@@ -11,6 +11,7 @@
     <property name ="OrderTime"/>
     <property name ="EatType"/>
     <property name ="Address"/>
+    <property name ="PhoneNum"/>
     <property name ="OtherRequest"/>
     <property name ="status"/>
     <!--多对一关系：Orders属于一个User-->

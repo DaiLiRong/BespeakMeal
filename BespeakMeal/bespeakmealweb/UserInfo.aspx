@@ -18,6 +18,7 @@
         .style4
         {
             width: 473px;
+            text-align: left;
         }
         .style6
         {
@@ -39,12 +40,23 @@
         .style10
         {
             width: 108px;
+            text-align: left;
         }
         .style11
         {
             font-size: x-large;
         }
+        
+       body { 
+        background-attachment:fixed; 
+        background-color:#FFFF66; 
+        background-image:url(bg.jpg); 
+        background-position:center; 
+        background-repeat:no-repeat; 
+        }
     </style>
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -71,7 +83,7 @@
                     <br />
                     确认密码<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
                     <br />
-                    <asp:Button ID="Button2" runat="server" Text="Button" onclick="Button2_Click" />
+                    <asp:Button ID="Button2" runat="server" Text="确定" onclick="Button2_Click" />
 
                     <asp:Label ID="Label7" runat="server"></asp:Label>
 

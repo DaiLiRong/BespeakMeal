@@ -1,6 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ProductCar.ascx.cs" Inherits="IndexModule_ProductCar" %>
 
-<center>
+<style type="text/css">
+    .style1
+    {
+        width: 70%;
+        height: 7px;
+    }
+    .style2
+    {
+        width: 334px;
+        text-align: right;
+    }
+</style>
+<asp:Panel ID="Panel1" runat="server">
+
+<center >
    <asp:DataList ID="ProductCar" runat="server" CellPadding="4" 
             ForeColor="#333333" RepeatColumns="1" 
             onselectedindexchanged="ProductCar_SelectedIndexChanged">
@@ -59,13 +73,25 @@
 
             <AlternatingItemStyle BackColor="White" />
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#7799FF" Font-Bold="true" ForeColor="White" />
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
 
     </asp:DataList>
 </center>
-    <div></div>
-    <asp:Label ID="Label1" runat="server" Text="商品总价：" style=" margin-left:600px"></asp:Label>
-    <asp:Label ID="Total" runat="server" Text=""></asp:Label>元
-    <asp:ImageButton ID="ImageButton1" ImageUrl="~/img/buynow.jpg" runat="server" 
-        Height="31px" Width="114px" onclick="ImageButton1_Click" PostBackUrl="~/SubmitOrder.aspx" />
+<center>
+<table class="style1">
+    <tr>
+        <td class="style2">
+            商品总价： 
+        </td>
+        <td>
+            <asp:Label ID="Total" runat="server" Text=""></asp:Label>
+            元 
+        </td>
+    </tr>
+</table>
+</center>
+
+</asp:Panel>
+
+

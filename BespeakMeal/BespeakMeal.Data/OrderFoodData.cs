@@ -139,6 +139,54 @@ namespace BespeakMeal.Data
 				}
 			}
 		}
+
+		/// <summary>
+		/// 查询订单的食物数量
+		/// </summary>
+		/// <param name="orderid"></param>
+		/// <returns></returns>
+		public int GetFoodNumByOrderId(int orderid)
+		{
+			//Session求和之后返回List数组，因为这里求和所以结果只有一个，取出下标为0的元素
+			//List里面的类型是object/Int64类型的，要先转换成字符串，再转换成Int32
+			//测试的时候没问题，打开网页的时候果断抛异常了。。。
+			/*return Convert.ToInt32(Session.CreateQuery("select sum(FoodNum) from OrderFood where OrderId = :orderid")
+				.SetInt32("orderid", orderid).List()[0].ToString());*/
+			int sum = 0;
+			IList<OrderFood> orderfoodlist = Session.CreateQuery("from OrderFood where orderid = :orderid")
+				.SetInt32("orderid", orderid)
+				.List<OrderFood>();
+			foreach (var v in orderfoodlist)
+			{
+				sum += v.FoodNum;
+			}
+			return sum;
+		}
+
+		/// <summary>
+		/// 查询订单总金额
+		/// </summary>
+		/// <param name="p"></param>
+		/// <returns></returns>
+		public double GetTotalByOrderId(int orderid)
+		{
+			double total = 0;
+			double price = 0;
+			IList<OrderFood> orderfoodlist = Session.CreateQuery("from OrderFood where OrderId = :orderid")
+				.SetInt32("orderid", orderid).List<OrderFood>();
+			foreach (var v in orderfoodlist)
+			{
+				IList<Food> foodlist = Session.CreateQuery("from Food where FoodId = :foodid")
+					.SetInt32("foodid", v.FoodId).List<Food>();
+				if (foodlist.Count > 0)
+				{
+					price = foodlist.First().FoodPrice;
+					total += price * v.FoodNum;
+				}
+			}
+			return total;
+		}
+
 		#endregion
 	}
 }
