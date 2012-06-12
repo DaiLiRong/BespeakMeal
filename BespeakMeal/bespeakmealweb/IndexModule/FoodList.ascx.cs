@@ -14,7 +14,7 @@ public partial class IndexModule_FoodList : System.Web.UI.UserControl
 	private FoodData _food = new FoodData();
 	public IndexModule_FoodList()
 	{
-		foodlist = _food.GetAllFood();
+		foodlist = _food.GetAllFoodByStatus1();
 	}
 	protected void Page_Load(object sender, EventArgs e)
 	{

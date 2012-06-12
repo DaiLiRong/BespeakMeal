@@ -15,6 +15,7 @@ namespace BespeakMeal.Domain.Entities
 		public virtual string FoodName { get; set; }
 		public virtual double FoodPrice { get; set; }
 		public virtual string FoodType { get; set; }
+		public virtual int Status { get; set; }
 		public virtual string FoodContent { get; set; }
 
 		//多对多关系：Food属于多个Orders

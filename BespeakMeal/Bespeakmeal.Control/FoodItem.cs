@@ -18,6 +18,7 @@ namespace BespeakMeal.Control
 		private int foodnum;
 		private double moneycount;
 		private int orderid;
+		private int status;
 
 		public int FoodId
 		{
@@ -48,6 +49,11 @@ namespace BespeakMeal.Control
 		{
 			get { return orderid; }
 			set { orderid = value; }
+		}
+		public int Status
+		{
+			get { return status; }
+			set { status = value; }
 		}
 	}
 }

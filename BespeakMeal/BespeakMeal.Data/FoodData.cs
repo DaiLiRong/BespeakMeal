@@ -47,12 +47,44 @@ namespace BespeakMeal.Data
 		}
 
 		/// <summary>
+		///  更新Food
+		/// </summary>
+		/// <param name="foodInfo"></param>
+		/// <returns></returns>
+		public void UpdateFood(Food foodInfo)
+		{
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Update(foodInfo);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
+		}
+
+		/// <summary>
 		/// 返回所有食物列表
 		/// </summary>
 		/// <returns></returns>
 		public IList<Food> GetAllFood()
 		{
 			return Session.CreateQuery("from Food").List<Food>();
+		}
+
+		/// <summary>
+		/// 返回所有上架了的食物列表
+		/// </summary>
+		/// <returns></returns>
+		public IList<Food> GetAllFoodByStatus1() 
+		{
+			return Session.CreateQuery("from Food where Status = 1").List<Food>();
 		}
 
 		/// <Query>

@@ -1,30 +1,33 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PayNow.aspx.cs" Inherits="IndexModule_PayNow" %>
-<%@ Register Src="IndexModule\Login.ascx" TagName="Login" TagPrefix="UC1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" 
+AutoEventWireup="true" CodeFile="PayNow.aspx.cs" Inherits="IndexModule_PayNow" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" Runat="Server">
+</asp:Content>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentRight" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-        <style type="text/css"> body { 
-        background-attachment:fixed; 
-        background-color:#FFFF66; 
-        background-image:url(bg.jpg); 
-        background-position:center; 
-        background-repeat:no-repeat; 
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <center>
-        <UC1:Login ID="Login1" runat="server" />
-        <div style="margin-left:100"><img alt="一乐订餐" src="1leBespeakMeal.jpg"/></div>
+        <div>
+        <br />
+            <table class="style1">
+                <tr>
+                    <td class="style3">
+                        <span class="style2">应付款项：</span>
+                        <asp:Label ID="TotalLabel" runat="server" 
+                            style="font-size: x-large; color: #FF0000;" Text="0"></asp:Label>
+                        <span class="style2">元</span></td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="style3">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+            </table>
+        </div>
         <h5 >支持以下银行机构在线支付，订单提交后即可选择：</h5>
         <div><img alt="支付银行" src="img\pic_bank.jpg"/></div>
-    </center>
-
-
-    </form>
-</body>
-</html>
+        <br /><br /><br />
+        <asp:LinkButton ID="FinishPayLink" runat="server"  
+            onclick="FinishPayLink_Click">已完成付款</asp:LinkButton>
+</asp:Content>

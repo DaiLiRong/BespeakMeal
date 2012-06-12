@@ -112,5 +112,17 @@ namespace BespeakMeal
 			double total = _orderFood.GetTotalByOrderId(8);
 			Assert.AreEqual(total, 94.0);
 		}
+
+		/// <summary>
+		/// 食物已销份数
+		/// </summary>
+		[TestMethod]
+		public void GetFoodSaleNum()
+		{
+			int foodid = 1;
+			int foodsalenum = _orderFood.GetFoodSaleNum(foodid);
+			Assert.AreEqual(foodsalenum, 2);
+		}
+
 	}
 }

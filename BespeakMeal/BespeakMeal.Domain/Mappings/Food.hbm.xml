@@ -10,6 +10,7 @@
     <property name ="FoodName"/>
     <property name ="FoodPrice"/>
     <property name ="FoodType"/>
+    <property name ="Status"/>
     <property name ="FoodContent"/>
   </class>
 

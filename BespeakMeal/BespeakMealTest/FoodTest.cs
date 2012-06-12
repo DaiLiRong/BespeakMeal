@@ -84,19 +84,19 @@ namespace BespeakMeal
 		/// <Create>
 		/// 通过传入Food对象，创建Food写进数据库，进行测试
 		/// </Create>
-		/*[TestMethod]
-		public void CreateFoodTest()
-		{
-			var tempFood = new Food
-			{
-				FoodName = "抹茶蛋糕",
-				FoodPrice = 4,
-				FoodType = "甜点",
-				FoodContent = "抹茶蛋糕就是加了抹茶粉的蛋糕。抹茶蛋糕既美观又美味，是一种很受人们喜爱的蛋糕。"
-			};
-			int id = _food.CreateFood(tempFood);
-			var testFood = _food.GetFoodById(id);
-			Assert.IsNotNull(testFood);
-		}*/
+		//[TestMethod]
+		//public void CreateFoodTest()
+		//{
+		//    var tempFood = new Food
+		//    {
+		//        FoodName = "抹茶蛋糕",
+		//        FoodPrice = 4,
+		//        FoodType = "甜点",
+		//        FoodContent = "抹茶蛋糕就是加了抹茶粉的蛋糕。抹茶蛋糕既美观又美味，是一种很受人们喜爱的蛋糕。",
+		//    };
+		//    int id = _food.CreateFood(tempFood);
+		//    var testFood = _food.GetFoodById(id);
+		//    Assert.IsNotNull(testFood);
+		//}
 	}
 }

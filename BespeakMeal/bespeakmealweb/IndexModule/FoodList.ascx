@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="FoodList.ascx.cs" Inherits="IndexModule_FoodList" %>
-<center>
     <div>
         <asp:DataList ID="FoodListView" runat="server" CellPadding="4" 
             RepeatColumns="6" BackColor="White" BorderColor="#CC9966" 
@@ -29,4 +28,3 @@
 
         </asp:DataList>
     </div>
-</center>

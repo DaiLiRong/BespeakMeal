@@ -23,6 +23,11 @@ public partial class Register : System.Web.UI.Page
 		string password = Password.Text;
 		if(!UserExistCheck() && RightPassword())
 		{
+			if ("" == password)
+			{
+				WrongMessage.Text = "密码不能为空！";
+				return;
+			}
 			var tempUser = new User
 			{
 				UserName = username,
@@ -71,7 +76,12 @@ public partial class Register : System.Web.UI.Page
 	private bool UserExistCheck()
 	{
 		string username = UserName.Text;
-		if (new_user.UserExist(username))
+		if ("" == username)
+		{
+			WrongMessage.Text = "用户名不能为空！";
+			return true;
+		}
+		else if (new_user.UserExist(username))
 		{
 			WrongMessage.Text = "用户名已存在！";
 			return true;

@@ -80,6 +80,13 @@ namespace BespeakMeal.Data
 				.List<OrderFood>();
 		}
 
+		public int GetFoodSaleNum(int foodid)
+		{
+			return Session.CreateQuery("from OrderFood where FoodId = :id")
+				.SetInt32("id", foodid)
+				.List<OrderFood>().Count;
+		}
+
 		/// <summary>
 		/// 通过OrderFood的Id获取Food对象
 		/// </summary>

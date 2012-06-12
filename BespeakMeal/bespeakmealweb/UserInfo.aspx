@@ -1,71 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserInfo.aspx.cs" Inherits="ChangeUserInfo" %>
-<%@ Register Src="IndexModule\Login.ascx" TagName="Login" TagPrefix="UC1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" 
+AutoEventWireup="true" CodeFile="UserInfo.aspx.cs" Inherits="ChangeUserInfo" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        .style1
-        {
-            width: 65%;
-        }
-        .style2
-        {
-            width: 330px;
-            height: 162px;
-        }
-        .style4
-        {
-            width: 473px;
-            text-align: left;
-        }
-        .style6
-        {
-            width: 83px;
-            text-align: right;
-            font-size: medium;
-            font-family: 黑体;
-        }
-        .style7
-        {
-            width: 390px;
-            height: 162px;
-        }
-        .style9
-        {
-            height: 60px;
-            text-align: left;
-        }
-        .style10
-        {
-            width: 108px;
-            text-align: left;
-        }
-        .style11
-        {
-            font-size: x-large;
-        }
-        
-       body { 
-        background-attachment:fixed; 
-        background-color:#FFFF66; 
-        background-image:url(bg.jpg); 
-        background-position:center; 
-        background-repeat:no-repeat; 
-        }
-    </style>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" Runat="Server">
+</asp:Content>
 
-
-</head>
-<body>
-    <form id="form1" runat="server">
-<center>
-
-<UC1:Login ID="Login1" runat="server" />
-
-    <div style="margin-left:100"><img alt="一乐订餐" src="1leBespeakMeal.jpg"/></div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentRight" Runat="Server">
 
     <table class="style1">
         <tr>
@@ -88,7 +27,7 @@
                     <asp:Label ID="Label7" runat="server"></asp:Label>
 
                 </asp:Panel>
-
+                </td>
             <td class="style7">
                 <asp:Panel ID="Panel2" runat="server" Visible="False">
                 
@@ -188,7 +127,4 @@
                 &nbsp;</td>
         </tr>
     </table>
-    </form>
-</center>
-</body>
-</html>
+</asp:Content>

@@ -129,7 +129,7 @@ namespace BespeakMeal.Control
 		/// 提交订单，将订单状态改为1
 		/// </summary>
 		/// <param name="userid"></param>
-		public void SubmitOrder(int userid, string address, string phonenum, string otherreq)
+		public int SubmitOrder(int userid, string address, string phonenum, string otherreq)
 		{
 			IList<Order> orderlist = _order.GetOrderInProductCar(userid);
 			if (0 != orderlist.Count)
@@ -141,7 +141,9 @@ namespace BespeakMeal.Control
 				order.PhoneNum = phonenum;
 				order.OtherRequest = otherreq;
 				_order.UpdateOrder(order);
+				return order.OrderId;
 			}
+			return -1;
 		}
 
 		/// <summary>
@@ -174,11 +176,15 @@ namespace BespeakMeal.Control
 					case 3:
 						status = "交易成功";
 						break;
+					case -1:
+						status = "订单已取消";
+						break;
 				}
 
 				//要放在循环里面new，因为List的Add仅仅保存它的指针，放在外面的话，所有的对象都是指向同一个内存空间
 				OrderItem oi = new OrderItem();
 				oi.OrderReference = orderreference;
+				oi.OrderId = v.OrderId;
 				oi.OrderTime = ordertime;
 				oi.FoodNum = foodnum;
 				oi.Total = total;
@@ -187,6 +193,39 @@ namespace BespeakMeal.Control
 				orderitemlist.Add(oi);
 			}
 			return orderitemlist;
+		}
+
+		/// <summary>
+		/// 取消订单，status变为-1
+		/// </summary>
+		/// <param name="orderid"></param>
+		public void CancelOrderByOrderId(int orderid)
+		{
+			Order order = _order.GetOrderById(orderid);
+			order.status = -1;
+			_order.UpdateOrder(order);
+		}
+
+		/// <summary>
+		/// 确认订单，status变为3
+		/// </summary>
+		/// <param name="orderid"></param>
+		public void ConfirmOrderByOrderId(int orderid)
+		{
+			Order order = _order.GetOrderById(orderid);
+			order.status = 3;
+			_order.UpdateOrder(order);
+		}
+
+		/// <summary>
+		/// 订单付款，status变为2
+		/// </summary>
+		/// <param name="orderid"></param>
+		public void PayOrderByOrderId(int orderid)
+		{
+			Order order = _order.GetOrderById(orderid);
+			order.status = 2;
+			_order.UpdateOrder(order);			
 		}
 	}
 }

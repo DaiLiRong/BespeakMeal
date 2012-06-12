@@ -24,7 +24,7 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 		//从OrderFood中获取的项有：订单Id（购物车）、食物Id、数量
 		OrderControl oc = new OrderControl();
 		foodlist = oc.GetProductCarFoodList(userid);
-		if (0 == foodlist.Count)
+		if (0 == foodlist.Count)//购物车没有食物，将不显示
 		{
 			Panel1.Visible = false;
 			return;
@@ -33,6 +33,7 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 
 		double totalmomey = GetTotalMomey(fooditemlist);
 		Total.Text = totalmomey.ToString();
+		Session["OrderTotal"] = Convert.ToString(totalmomey);
 		//将所有菜单绑定到DataList中显示出来
 		if (!IsPostBack)
 		{
@@ -80,6 +81,46 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 	/// </summary>
 	/// <param name="sender"></param>
 	/// <param name="e"></param>
+
+	protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+	{
+		CheckBox chk = (CheckBox)sender;
+		DataListItem gvr = (DataListItem)chk.Parent;
+		int a = gvr.ItemIndex;
+	}
+
+	/// <summary>
+	/// 删除一条食物
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	protected void LinkButton1_Click(object sender, EventArgs e)
+	{
+		//Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
+
+		//获取要删除的食物的索引
+		LinkButton lbton = (LinkButton)sender;
+		DataListItem gvr = (DataListItem)lbton.Parent;
+		int foodindex = gvr.ItemIndex;
+
+		OrderFoodControl ofc = new OrderFoodControl();
+		OrderControl oc = new OrderControl();
+		foodlist = oc.GetProductCarFoodList(userid);
+		fooditemlist = oc.GetFoodItemByOrderFoodList(foodlist);
+
+		int foodid = fooditemlist.ElementAt(foodindex).FoodId;
+		int orderid = fooditemlist.ElementAt(foodindex).OrderId;
+		Session["OrderId"] = orderid;
+
+		//删除订单食物，如果订单里面没有食物了，就删除这个订单
+		ofc.DeleteOrderFood(orderid, foodid);
+		if(1 == foodlist.Count)
+		{
+			OrderData _order = new OrderData();
+			_order.DeleteOrder(_order.GetOrderById(orderid));
+		}
+		Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
+	}
 	protected void FoodNum_TextChanged(object sender, EventArgs e)
 	{
 		//获取修改了的TextBox的FoodItem项的索引
@@ -102,41 +143,6 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 		int foodid = fooditemlist.ElementAt(foodindex).FoodId;
 		int foodnum = Convert.ToInt32(tb.Text.ToString());
 		ofc.ModifyFoodNum(userid, foodid, foodnum);
-		Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
-	}
-	protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
-	{
-		CheckBox chk = (CheckBox)sender;
-		DataListItem gvr = (DataListItem)chk.Parent;
-		int a = gvr.ItemIndex;
-	}
-
-	/// <summary>
-	/// 删除一条食物
-	/// </summary>
-	/// <param name="sender"></param>
-	/// <param name="e"></param>
-	protected void LinkButton1_Click(object sender, EventArgs e)
-	{
-		//Page.Response.Write("<script>alert('食物数量不能为0！您可以选择删除该食物。')</script>");
-		//Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
-
-		//获取要删除的食物的索引
-		LinkButton lbton = (LinkButton)sender;
-		lbton.Attributes.Add("onclick", "return confirm('确定要删吗?');");
-
-		DataListItem gvr = (DataListItem)lbton.Parent;
-		int foodindex = gvr.ItemIndex;
-
-		OrderFoodControl ofc = new OrderFoodControl();
-		OrderControl oc = new OrderControl();
-		foodlist = oc.GetProductCarFoodList(userid);
-		fooditemlist = oc.GetFoodItemByOrderFoodList(foodlist);
-
-		int foodid = fooditemlist.ElementAt(foodindex).FoodId;
-		int orderid = fooditemlist.ElementAt(foodindex).OrderId;
-
-		ofc.DeleteOrderFood(orderid, foodid);
 		Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
 	}
 }

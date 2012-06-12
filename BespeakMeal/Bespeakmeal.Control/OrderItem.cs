@@ -16,6 +16,13 @@ namespace BespeakMeal.Control
 			set { orderreference = value; }
 		}
 
+		private int orderid;
+		public int OrderId
+		{
+			get { return orderid; }
+			set { orderid = value; }
+		}
+
 		private DateTime ordertime;
 		public DateTime OrderTime
 		{

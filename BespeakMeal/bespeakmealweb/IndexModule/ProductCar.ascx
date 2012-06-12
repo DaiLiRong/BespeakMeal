@@ -13,8 +13,6 @@
     }
 </style>
 <asp:Panel ID="Panel1" runat="server">
-
-<center >
    <asp:DataList ID="ProductCar" runat="server" CellPadding="4" 
             ForeColor="#333333" RepeatColumns="1" 
             onselectedindexchanged="ProductCar_SelectedIndexChanged">
@@ -64,7 +62,7 @@
                     <td width="100px">
                         <span style="font-size:large;color:Red;font-family:Tahoma">¥<%#Eval("MoneyCount")%></span></td>
                     <td width="100px">
-                        <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click">删除</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click" OnClientClick="return confirm('你真的要删除吗？');">删除</asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -77,8 +75,8 @@
             <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
 
     </asp:DataList>
-</center>
-<center>
+
+
 <table class="style1">
     <tr>
         <td class="style2">
@@ -90,7 +88,6 @@
         </td>
     </tr>
 </table>
-</center>
 
 </asp:Panel>
 

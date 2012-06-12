@@ -31,7 +31,9 @@ public partial class SubmitOrder : System.Web.UI.Page
 		{
 
 			OrderControl ordercontrol = new OrderControl();
-			ordercontrol.SubmitOrder(Convert.ToInt32(userid),address, phonenum, otherreq);
+			int orderid = ordercontrol.SubmitOrder(Convert.ToInt32(userid),address, phonenum, otherreq);
+			//orderid保存到Session中，以便付款时取出
+			Session["OrderId"] = Convert.ToString(orderid);
 			Response.Write("<script language=javascript>window.location.href='Pay.aspx';</script>");
 		}
 		else

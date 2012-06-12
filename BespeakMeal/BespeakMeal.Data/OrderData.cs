@@ -45,6 +45,29 @@ namespace BespeakMeal.Data
 		}
 
 		/// <summary>
+		/// 通过传入Order对象，删除Order
+		/// </summary>
+		/// <param name="orderInfo"></param>
+		public void DeleteOrder(Order orderInfo)
+		{		
+			using (ITransaction tx = Session.BeginTransaction())
+			{
+				try
+				{
+					Session.Delete(orderInfo);
+					Session.Flush();
+					tx.Commit();
+				}
+				catch (HibernateException)
+				{
+					tx.Rollback();
+					throw;
+				}
+			}
+
+		}
+
+		/// <summary>
 		/// 获取用户购物车订单，status为0
 		/// </summary>
 		/// <param name="userId"></param>

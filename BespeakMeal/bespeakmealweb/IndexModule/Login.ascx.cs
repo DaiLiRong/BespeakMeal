@@ -116,12 +116,12 @@ public partial class IndexModule_Login : System.Web.UI.UserControl
 		Response.Write("<script language=javascript>window.location.href='index.aspx';</script>");
 	}
 	//跳转到购物车
-	protected void MyCar_Click(object sender, EventArgs e)
-	{
-		Response.Write("<script language=javascript>window.location.href='ProductCarShow.aspx';</script>");
-	}
-	protected void LinkButton3_Click(object sender, EventArgs e)
-	{
-		Response.Write("<script language=javascript>window.location.href='UserInfo.aspx';</script>");
-	}
+	//protected void MyCar_Click(object sender, EventArgs e)
+	//{
+	//    Response.Write("<script language=javascript>window.location.href='UserPage/ProductCarShow.aspx';</script>");
+	//}
+	//protected void LinkButton3_Click(object sender, EventArgs e)
+	//{
+	//    Response.Write("<script language=javascript>window.location.href='UserPage/UserInfo.aspx';</script>");
+	//}
 }
