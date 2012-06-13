@@ -164,5 +164,26 @@ namespace BespeakMeal
 			IList<Order> productcar = _order.GetOrderInProductCar(1);
 			Assert.AreEqual(0, productcar.Count);
 		}
+
+		/// <summary>
+		/// 获得所有管理订单项，对第一个订单项进行各个字段测试
+		/// </summary>
+		[TestMethod]
+		public void GetAllOrderItemTest()
+		{
+			IList<ManagerOrderItem> moilist = _orderControl.GetAllOrderItem();
+
+			Assert.AreEqual(moilist.Count, 17);
+			ManagerOrderItem first = moilist.First();
+
+			Assert.AreEqual(first.OrderId, 4);
+			Assert.AreEqual(first.UserId, 1);
+			Assert.AreEqual(first.UserName, "lion");
+			Assert.AreEqual(first.Address, "前山路206号");
+			Assert.AreEqual(first.FoodNum, 0);
+			Assert.AreEqual(first.FoodList.Count, 0);
+			Assert.AreEqual(first.Status, "订单已取消");
+		}
+
 	}
 }

@@ -49,6 +49,7 @@
     <Compile Include="FoodControl.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="ManagerFoodItem.cs" />
+    <Compile Include="ManagerOrderItem.cs" />
     <Compile Include="OrderControl.cs" />
     <Compile Include="OrderFoodControl.cs" />
     <Compile Include="OrderItem.cs" />

@@ -44,6 +44,12 @@ namespace BespeakMeal.Data
 			}
 		}
 
+		public IList<User> GetAllUser()
+		{
+			return Session.CreateQuery("from User")
+				.List<User>();
+		}
+
 		/// <Query>
 		/// 通过UserId获取User对象
 		/// </Query>

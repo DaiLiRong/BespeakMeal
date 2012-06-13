@@ -174,6 +174,9 @@ namespace BespeakMeal.Control
 						status = "已付款";
 						break;
 					case 3:
+						status = "正在送";
+						break;
+					case 4:
 						status = "交易成功";
 						break;
 					case -1:
@@ -207,13 +210,13 @@ namespace BespeakMeal.Control
 		}
 
 		/// <summary>
-		/// 确认订单，status变为3
+		/// 确认订单，status变为4
 		/// </summary>
 		/// <param name="orderid"></param>
 		public void ConfirmOrderByOrderId(int orderid)
 		{
 			Order order = _order.GetOrderById(orderid);
-			order.status = 3;
+			order.status = 4;
 			_order.UpdateOrder(order);
 		}
 
@@ -225,7 +228,70 @@ namespace BespeakMeal.Control
 		{
 			Order order = _order.GetOrderById(orderid);
 			order.status = 2;
+			order.PayTime = DateTime.Now;
 			_order.UpdateOrder(order);			
+		}
+
+		/// <summary>
+		/// 管理订单列表，包括很多项。。
+		/// </summary>
+		/// <returns></returns>
+		public IList<ManagerOrderItem> GetAllOrderItem()
+		{
+			IList<Order> orderlist = _order.GetAllOrder();
+			return GetManagerOrderItemListByOrderList(orderlist);
+		}
+
+		public IList<ManagerOrderItem> GetOrderItemByStatus(int status)
+		{
+			IList<Order> payorderlist = _order.GetOrderByStatus(status);
+			return GetManagerOrderItemListByOrderList(payorderlist);
+		}
+
+		private IList<ManagerOrderItem> GetManagerOrderItemListByOrderList(IList<Order> orderlist)
+		{
+			IList<ManagerOrderItem> managerorderitemlist = new List<ManagerOrderItem>();
+
+			foreach (var v in orderlist)
+			{
+				ManagerOrderItem mgrOrderItem = new ManagerOrderItem();
+				mgrOrderItem.Address = v.Address;
+				mgrOrderItem.OrderId = v.OrderId;
+				mgrOrderItem.OrderTime = v.OrderTime;
+				mgrOrderItem.OtherReq = v.OtherRequest;
+				mgrOrderItem.PayTime = v.PayTime;
+				mgrOrderItem.PhoneNum = v.PhoneNum;
+				mgrOrderItem.UserId = v.UserId;
+				switch (v.status)
+				{
+					case -1:
+						mgrOrderItem.Status = "订单已取消";
+						break;
+					case 1:
+						mgrOrderItem.Status = "未付款";
+						break;
+					case 2:
+						mgrOrderItem.Status = "已付款";
+						break;
+					case 3:
+						mgrOrderItem.Status = "正在送";
+						break;
+					case 4:
+						mgrOrderItem.Status = "交易成功";
+						break;
+				}
+				mgrOrderItem.UserName = new UserData().GetUserById(v.UserId).UserName;
+				mgrOrderItem.FoodList = this.GetFoodItemByOrderFoodList(
+					_orderfood.GetOrderFoodListByOrderId(v.OrderId));
+				mgrOrderItem.FoodNum = _orderfood.GetFoodNumByOrderId(v.OrderId);
+				DateTime d = v.OrderTime;
+				mgrOrderItem.OrderReference = d.Year.ToString() + d.Month.ToString() + d.Day.ToString() +
+					d.Hour.ToString() + d.Minute.ToString() + d.Second.ToString() + "-" + v.OrderId.ToString();
+				mgrOrderItem.Total = new OrderFoodData().GetTotalByOrderId(v.OrderId);
+				managerorderitemlist.Add(mgrOrderItem);
+			}
+
+			return managerorderitemlist;
 		}
 	}
 }

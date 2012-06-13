@@ -159,5 +159,26 @@ namespace BespeakMeal.Data
 				}
 			}
 		}
+
+		/// <summary>
+		/// 返回所有订单
+		/// </summary>
+		/// <returns></returns>
+		public IList<Order> GetAllOrder()
+		{
+			return Session.CreateQuery("from Order where Status != 0")
+				.List<Order>();
+		}
+
+		/// <summary>
+		/// 返回已付款订单，status为2
+		/// </summary>
+		/// <returns></returns>
+		public IList<Order> GetOrderByStatus(int status)
+		{
+			return Session.CreateQuery("from Order where Status = :status")
+				.SetInt32("status", status)
+				.List<Order>();
+		}
 	}
 }

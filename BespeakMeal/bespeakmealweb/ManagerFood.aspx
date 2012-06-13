@@ -4,28 +4,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentLeft" Runat="Server">
     
-    <table style="width: 100%; height: 157px">
-        <tr>
-            <td style="color: #FF0000">
-                <asp:LinkButton ID="FoodLinkButton" runat="server" Text="菜单管理" PostBackUrl="~/ManagerFood.aspx"></asp:LinkButton>
-            </td>
-        </tr>
-        <tr>
-            <td style="color: #FF0000">
-                <asp:LinkButton ID="OrderLinkButton" runat="server" Text="订单管理" PostBackUrl="~/ManagerOrder.aspx"></asp:LinkButton>
-            </td>
-        </tr>
-        <tr>
-            <td style="color: #FF0000">
-                <asp:LinkButton ID="SaleLinkButton" runat="server" Text="销售统计" PostBackUrl="~/ManagerSale.aspx"></asp:LinkButton>
-          </td>
-        </tr>
-        <tr>
-            <td style="color: #FF0000">
-                <asp:LinkButton ID="UserLinkButton" runat="server" Text="会员管理" PostBackUrl="~/ManagerUser.aspx"></asp:LinkButton>
-            </td>
-        </tr>
-    </table>
+    <asp:Menu ID="Menu1" runat="server" onmenuitemclick="Menu1_MenuItemClick">
+        <Items>
+            <asp:MenuItem Text="菜单管理" Value="菜单管理" NavigateUrl="~/ManagerFood.aspx">
+                <asp:MenuItem Text="添加新菜" Value="添加新菜"></asp:MenuItem>
+            </asp:MenuItem>
+            <asp:MenuItem Text="订单管理" Value="订单管理" NavigateUrl="~/ManagerOrder.aspx"></asp:MenuItem>
+            <asp:MenuItem Text="销售统计" Value="销售统计" NavigateUrl="~/ManagerSale.aspx"></asp:MenuItem>
+            <asp:MenuItem Text="会员管理" Value="会员管理" NavigateUrl="~/ManagerUser.aspx"></asp:MenuItem>
+        </Items>
+    </asp:Menu>
     
 </asp:Content>
 
@@ -59,6 +47,8 @@
 
                     <td width="100" align="center">
                         <span>
+
+
                             <img    alt= '<%#Eval("FoodName")%>'
                             src='<%#string.Format("img/{0}.jpg ",Eval("FoodId").ToString().Replace("    "," "))%> '
                             width= "45px" height="45px "/>

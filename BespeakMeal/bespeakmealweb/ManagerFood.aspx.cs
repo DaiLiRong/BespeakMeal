@@ -40,6 +40,7 @@ public partial class _Default : System.Web.UI.Page
 		AllFood.Visible = false;
 
 		//获取食物的索引
+
 		LinkButton lbton = (LinkButton)sender;
 		DataListItem gvr = (DataListItem)lbton.Parent;
 		int foodindex = gvr.ItemIndex;
@@ -235,6 +236,15 @@ public partial class _Default : System.Web.UI.Page
 			FoodDetail.Visible = true; 
 			SubmitNewFood.Visible = true;
 			Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
+		}
+	}
+	protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+	{
+		if ("添加新菜" == Menu1.SelectedValue)
+		{
+			AllFood.Visible = false;
+			FoodDetail.Visible = false;
+			AddNewFoodPanel.Visible = true;
 		}
 	}
 }

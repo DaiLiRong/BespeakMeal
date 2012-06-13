@@ -96,8 +96,6 @@ public partial class IndexModule_ProductCar : System.Web.UI.UserControl
 	/// <param name="e"></param>
 	protected void LinkButton1_Click(object sender, EventArgs e)
 	{
-		//Response.Write("<script language=javascript>window.location.href=window.location.href;</script>");
-
 		//获取要删除的食物的索引
 		LinkButton lbton = (LinkButton)sender;
 		DataListItem gvr = (DataListItem)lbton.Parent;

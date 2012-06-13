@@ -96,7 +96,15 @@ namespace UserTest
 			Assert.IsFalse(userexist2);
 		}
 
-
+		/// <summary>
+		/// 获取User表中所有User，测试个数
+		/// </summary>
+		[TestMethod]
+		public void GetAllUserTest()
+		{
+			IList<User> userlist = _user.GetAllUser();
+			Assert.AreEqual(userlist.Count, 12);
+		}
 
 		/*[TestMethod]
 		public void GetUserByOrderIdTest()

@@ -90,9 +90,9 @@ AutoEventWireup="true" CodeFile="MyOrder.aspx.cs" Inherits="MyOrder" %>
                     <asp:LinkButton ID="PayNowLink" runat="server" Visible="False" 
                         PostBackUrl="~/PayNow.aspx" onclick="PayNowLink_Click">去付款</asp:LinkButton>
                     <asp:LinkButton ID="CancelLink" runat="server" Visible="False" 
-                        onclick="CancelLink_Click">取消订单</asp:LinkButton>
+                        onclick="CancelLink_Click" OnClientClick="return confirm('亲，你真的要取消吗？');">取消订单</asp:LinkButton>
                     <asp:LinkButton ID="ConfirmLink" runat="server" Visible="False" 
-                        onclick="ConfirmLink_Click">确认订单</asp:LinkButton>
+                        onclick="ConfirmLink_Click" OnClientClick="return confirm('亲，你真的要确认吗？');">确认订单</asp:LinkButton>
                 </td>
             </tr>
             <tr>

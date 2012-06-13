@@ -90,6 +90,12 @@ public partial class MyOrder : System.Web.UI.Page
 				StatusLabel.ForeColor = System.Drawing.Color.Green;
 				PayNowLink.Visible = false;
 				CancelLink.Visible = false;
+				ConfirmLink.Visible = false;
+				break;
+			case "正在送":
+				StatusLabel.ForeColor = System.Drawing.Color.Green;
+				PayNowLink.Visible = false;
+				CancelLink.Visible = false;
 				ConfirmLink.Visible = true;
 				break;
 			case "交易成功":

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2012 年 06 月 12 日 22:41
+-- 生成日期: 2012 年 06 月 13 日 21:44
 -- 服务器版本: 5.5.16
 -- PHP 版本: 5.3.8
 
@@ -65,39 +65,43 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   `orderid` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `ordertime` datetime DEFAULT NULL,
+  `paytime` datetime DEFAULT NULL,
   `eattype` varchar(8) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
   `phonenum` varchar(16) DEFAULT NULL,
   `otherrequest` varchar(50) DEFAULT NULL,
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`orderid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- 转存表中的数据 `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`orderid`, `userid`, `ordertime`, `eattype`, `address`, `phonenum`, `otherrequest`, `status`) VALUES
-(4, 1, '2012-05-28 01:03:00', '外卖', '前山路206号', NULL, '加辣', -1),
-(5, 1, '2012-05-28 01:05:15', '外卖', '前山路206号', NULL, '加辣', -1),
-(6, 1, '2012-05-28 01:34:05', '外卖', '前山路206号', NULL, '加辣', 3),
-(8, 1, '2012-05-29 08:55:58', '外卖', '暨大北门', NULL, 'ifaennaefn额infield爱犯贱额爱犯贱阿伟激发iwjefaw饥饿疗法就啊我类纠纷爱问家乐', -1),
-(9, 8, '0001-01-01 00:00:00', NULL, NULL, NULL, NULL, 0),
-(10, 2, '0001-01-01 00:00:00', NULL, '暨南大学', '13750010204', '', 1),
-(11, 10, '2012-06-09 16:15:54', NULL, NULL, NULL, NULL, 0),
-(12, 1, '2012-06-10 10:05:53', NULL, '1431宿舍', '1213123', '', 1),
-(13, 1, '2012-06-11 20:52:03', NULL, '1431宿舍', '13750010204', '', 3),
-(14, 1, '2012-06-11 20:54:47', NULL, '1431宿舍', '13750010204', '', -1),
-(15, 1, '2012-06-11 21:36:06', NULL, '1431宿舍', '13750018812', '加饭', 2),
-(16, 1, '2012-06-11 21:50:18', NULL, '1431宿舍', '13750018812', '加冰', 3),
-(18, 2, '2012-06-11 22:03:18', NULL, NULL, NULL, NULL, 0),
-(24, 1, '2012-06-11 23:03:37', NULL, '1431宿舍', '13750018812', '加饭', 3),
-(25, 1, '2012-06-12 00:14:01', NULL, '1431宿舍', '1213123', 'ijfeij', 2),
-(26, 1, '2012-06-12 00:27:37', NULL, '1431宿舍', '1213123', 'ijfeij', -1),
-(27, 12, '2012-06-12 00:32:35', NULL, 'fej', 'jife', 'jia', 1),
-(28, 1, '2012-06-12 00:46:37', NULL, 'jfie', 'jiaj', 'ljij', 1),
-(34, 1, '2012-06-12 13:15:16', NULL, 'jei', 'jif', 'jie', 2),
-(35, 1, '2012-06-12 17:47:41', NULL, 'fji', 'jif', 'jifej', 2);
+INSERT INTO `tbl_order` (`orderid`, `userid`, `ordertime`, `paytime`, `eattype`, `address`, `phonenum`, `otherrequest`, `status`) VALUES
+(4, 1, '2012-05-28 01:03:00', NULL, '外卖', '前山路206号', NULL, '加辣', -1),
+(5, 1, '2012-05-28 01:05:15', NULL, '外卖', '前山路206号', NULL, '加辣', -1),
+(6, 1, '2012-05-28 01:34:05', NULL, '外卖', '前山路206号', NULL, '加辣', 3),
+(8, 1, '2012-05-29 08:55:58', NULL, '外卖', '暨大北门', NULL, 'ifaennaefn额infield爱犯贱额爱犯贱阿伟激发iwjefaw饥饿疗法就啊我类纠纷爱问家乐', -1),
+(9, 8, '0001-01-01 00:00:00', NULL, NULL, NULL, NULL, NULL, 0),
+(10, 2, '0001-01-01 00:00:00', NULL, NULL, '暨南大学', '13750010204', '', 1),
+(11, 10, '2012-06-09 16:15:54', NULL, NULL, NULL, NULL, NULL, 0),
+(12, 1, '2012-06-10 10:05:53', '2012-06-13 08:39:59', NULL, '1431宿舍', '1213123', '', 2),
+(13, 1, '2012-06-11 20:52:03', NULL, NULL, '1431宿舍', '13750010204', '', 3),
+(14, 1, '2012-06-11 20:54:47', NULL, NULL, '1431宿舍', '13750010204', '', -1),
+(15, 1, '2012-06-11 21:36:06', NULL, NULL, '1431宿舍', '13750018812', '加饭', 2),
+(16, 1, '2012-06-11 21:50:18', NULL, NULL, '1431宿舍', '13750018812', '加冰', 3),
+(18, 2, '2012-06-11 22:03:18', NULL, NULL, NULL, NULL, NULL, 0),
+(24, 1, '2012-06-11 23:03:37', NULL, NULL, '1431宿舍', '13750018812', '加饭', 3),
+(25, 1, '2012-06-12 00:14:01', NULL, NULL, '1431宿舍', '1213123', 'ijfeij', 2),
+(26, 1, '2012-06-12 00:27:37', NULL, NULL, '1431宿舍', '1213123', 'ijfeij', -1),
+(27, 12, '2012-06-12 00:32:35', NULL, NULL, 'fej', 'jife', 'jia', 1),
+(28, 1, '2012-06-12 00:46:37', NULL, NULL, 'jfie', 'jiaj', 'ljij', -1),
+(34, 1, '2012-06-12 13:15:16', NULL, NULL, 'jei', 'jif', 'jie', 2),
+(35, 1, '2012-06-12 17:47:41', NULL, NULL, 'fji', 'jif', 'jifej', 2),
+(37, 1, '2012-06-13 18:43:26', '2012-06-13 18:43:54', NULL, '前山', '13750018888', '', 2),
+(39, 1, '2012-06-13 20:51:39', '2012-06-13 20:52:01', NULL, '1427', '13750018888', '加饭', 2),
+(40, 1, '2012-06-13 20:55:43', '0001-01-01 00:00:00', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `tbl_orderfood` (
   `foodnum` int(8) NOT NULL DEFAULT '1',
   PRIMARY KEY (`orderfoodid`),
   KEY `orderfoodid` (`orderfoodid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
 -- 转存表中的数据 `tbl_orderfood`
@@ -150,7 +154,10 @@ INSERT INTO `tbl_orderfood` (`orderfoodid`, `orderid`, `foodid`, `foodnum`) VALU
 (70, 28, 2, 1),
 (76, 34, 5, 1),
 (77, 34, 7, 1),
-(78, 35, 5, 1);
+(78, 35, 5, 1),
+(80, 37, 3, 1),
+(82, 39, 3, 1),
+(83, 40, 7, 1);
 
 -- --------------------------------------------------------
 

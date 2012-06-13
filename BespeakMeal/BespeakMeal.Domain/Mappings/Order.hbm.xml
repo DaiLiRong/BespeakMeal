@@ -9,6 +9,7 @@
     </id>
     <property name ="UserId"/>
     <property name ="OrderTime"/>
+    <property name ="PayTime"/>
     <property name ="EatType"/>
     <property name ="Address"/>
     <property name ="PhoneNum"/>

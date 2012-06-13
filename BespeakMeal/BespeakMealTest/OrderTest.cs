@@ -93,6 +93,16 @@ namespace BespeakMeal
 			Assert.AreEqual(1, tempOrders.Count);
 		}
 
+		/// <summary>
+		/// 获取所有订单测试个数
+		/// </summary>
+		[TestMethod]
+		public void GetAllOrderTest()
+		{
+			IList<Order> tempOrders = _order.GetAllOrder();
+			Assert.AreEqual(tempOrders.Count, 17);
+		}
+
 		/// <Create>
 		/// 通过传入Order对象，创建Order写进数据库，进行测试
 		/// </Create>
