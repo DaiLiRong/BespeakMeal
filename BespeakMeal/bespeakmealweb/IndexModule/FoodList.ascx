@@ -1,10 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="FoodList.ascx.cs" Inherits="IndexModule_FoodList" %>
+    
+   
     <div>
+        
         <asp:DataList ID="FoodListView" runat="server" CellPadding="4" 
             RepeatColumns="6" BackColor="White" BorderColor="#CC9966" 
             BorderStyle="None" BorderWidth="1px" GridLines="Both" 
             OnItemCommand="FoodListView_OnItemCommand" Font-Size="Small" 
-            Height="276px">
+            Height="276px" RepeatDirection="Horizontal">
 
          
             <ItemTemplate>

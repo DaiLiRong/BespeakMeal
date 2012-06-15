@@ -50,6 +50,8 @@ namespace BespeakMeal.Data
 				.List<User>();
 		}
 
+
+
 		/// <Query>
 		/// 通过UserId获取User对象
 		/// </Query>

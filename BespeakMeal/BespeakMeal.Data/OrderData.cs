@@ -79,6 +79,34 @@ namespace BespeakMeal.Data
 				.List<Order>();
 		}
 
+		/// <summary>
+		/// 获取当天销售额
+		/// </summary>
+		/// <param name="datetime"></param>
+		/// <returns></returns>
+		public double GetTodayTotal(DateTime datetime)
+		{
+			IList<Order> orderlist = Session.CreateQuery("from Order where status = 2 or status = 3 or status =4")
+				.List<Order>();
+			IList<Order> todayorder = new List<Order>();
+			double total = 0;
+			foreach (var v in orderlist)
+			{
+				if (v.PayTime.Date == datetime.Date)
+					todayorder.Add(v);
+			}
+			foreach (var v in todayorder)
+			{
+				IList<OrderFood> orderfood = new OrderFoodData().GetOrderFoodListByOrderId(v.OrderId);
+				foreach (var u in orderfood)
+				{
+					double price = new FoodData().GetFoodPriceByFoodId(u.FoodId);
+					total += u.FoodNum * price;
+				}
+			}
+			return total;
+		}
+
 		/// <Query>
 		/// 通过OrderId获取Order对象
 		/// </Query>

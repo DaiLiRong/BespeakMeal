@@ -2,10 +2,10 @@
 
 <asp:Menu ID="Menu1" runat="server">
     <Items>
-        <asp:MenuItem Text="所有美食" Value="所有美食"></asp:MenuItem>
-        <asp:MenuItem Text="外卖快餐" Value="外卖快餐"></asp:MenuItem>
-        <asp:MenuItem Text="精品美食" Value="精品美食"></asp:MenuItem>
-        <asp:MenuItem Text="饮料酒水" Value="饮料酒水"></asp:MenuItem>
-        <asp:MenuItem Text="面包甜点" Value="面包甜点"></asp:MenuItem>
+        <asp:MenuItem Text="" Value="所有美食" ImageUrl="~/img/all.jpg"></asp:MenuItem>
+        <asp:MenuItem Text="" Value="外卖快餐" ImageUrl="~/img/fastfood.jpg"></asp:MenuItem>
+        <asp:MenuItem Text="" Value="精品美食" ImageUrl="~/img/goods.jpg"></asp:MenuItem>
+        <asp:MenuItem Text="" Value="饮料酒水" ImageUrl="~/img/drink.jpg"></asp:MenuItem>
+        <asp:MenuItem Text="" Value="面包甜点" ImageUrl="~/img/bread.jpg"></asp:MenuItem>
     </Items>
 </asp:Menu>

@@ -176,16 +176,15 @@ namespace UserTest
 		/// <Update>
 		/// 通过传入User对象，修改、更新数据库信息
 		/// </Update>
-		/*[TestMethod]
+		[TestMethod]
 		public void UpdateUserTest()
 		{
 			var user = _user.GetUserById(2);
-			user.FirstName = "彩娟";
-			user.LastName = "罗";
+			user.Name = "娟";
 			_user.UpdateUser(user);
 			var testUser = _user.GetUserById(2);
-			Assert.AreEqual("彩娟", user.FirstName);
-		}*/
+			Assert.AreEqual("娟", user.Name);
+		}
 
 		/// <SaveOrUpdate>
 		/// IList保存的User对象中，是否应该更新字段还是将整个对象保存到数据库中

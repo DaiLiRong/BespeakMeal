@@ -166,6 +166,20 @@ namespace BespeakMeal
 		}
 
 		/// <summary>
+		/// 日期统计销售额测试
+		/// </summary>
+		[TestMethod]
+		public void StatisticTest()
+		{
+			Statistic st = new Statistic(new DateTime(2012, 6, 14));
+			Assert.AreEqual(st.Total, 79);
+			//Assert.AreEqual(st.OrderTime, "2012/6/14");
+			Assert.AreEqual(st.Date, "2012-6-14");
+			Assert.AreEqual(st.Hour, "0");
+			Assert.AreEqual(st.Minute, "0");
+		}
+
+		/// <summary>
 		/// 获得所有管理订单项，对第一个订单项进行各个字段测试
 		/// </summary>
 		[TestMethod]

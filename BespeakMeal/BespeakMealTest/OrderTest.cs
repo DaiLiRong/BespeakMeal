@@ -103,9 +103,19 @@ namespace BespeakMeal
 			Assert.AreEqual(tempOrders.Count, 17);
 		}
 
-		/// <Create>
+		/// <summary>
+		/// 获取当天的销售额
+		/// </summary>
+		[TestMethod]
+		public void GetTodayTotalTest()
+		{
+			double total = _order.GetTodayTotal(new DateTime(2012, 6, 14));
+			Assert.AreEqual(total, 79.0);
+		}
+
+		/// <summary>
 		/// 通过传入Order对象，创建Order写进数据库，进行测试
-		/// </Create>
+		/// </summary>
 		/*[TestMethod]
 		public void CreateOrderTest()
 		{

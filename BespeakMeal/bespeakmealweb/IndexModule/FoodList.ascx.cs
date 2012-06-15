@@ -23,6 +23,7 @@ public partial class IndexModule_FoodList : System.Web.UI.UserControl
 		{
 			FoodListView.DataSource = foodlist;
 			FoodListView.DataBind();
+			//FoodListView.RepeatDirection= 
 		}
 	}
 

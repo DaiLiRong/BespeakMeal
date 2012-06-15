@@ -15,6 +15,40 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentRight" Runat="Server">
+
+    <asp:LinkButton ID="sevenday" runat="server" onclick="sevenday_Click">最近一个星期的销售额</asp:LinkButton>
+
+    <asp:DataList ID="SaleList" runat="server">
+        <HeaderTemplate>
+            <table border="0">
+                <td width="120" align="center"><span>星期一</span></td>
+                <td width="70px" align="center"><span>销售额</span></td>
+            <table>
+            </HeaderTemplate>
+
+            <ItemStyle BackColor="#FFFBD6" ForeColor="#333333" />
+
+            <ItemTemplate>
+            <table>
+                </tr>
+                <tr>
+                    <td width="120px" align="center">
+                        <span style="font-size:large;color:gray;font-family:Tahoma"><%#Eval("Date")%></span>
+
+                    <td width="100px" align="center">
+                        <span style="font-size:large;color:Red;font-family:Tahoma"><%#Eval("Total")%>元</span></td>
+
+                </tr>
+            </table>
+            </ItemTemplate>
+
+
+            <AlternatingItemStyle BackColor="White" />
+            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#7799FF" Font-Bold="true" ForeColor="White" />
+            <SelectedItemStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+    </asp:DataList>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 </asp:Content>

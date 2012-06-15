@@ -28,7 +28,7 @@
                 <td width="150px" align="center"><span>电话</span></td>
                 <td width="180px" align="center"><span>邮箱</span></td>
                 <td width="180px" align="center"><span>创建时间</span></td>
-                <td width="70px" align="center"><span>权限</span></td>
+                <td width="100px" align="center"><span>权限</span></td>
             <table>
             </HeaderTemplate>
 
@@ -63,8 +63,9 @@
                         <span><%#Eval("Email")%></span></td>
                     <td width="180px" align="center">
                         <span><%#Eval("CreateTime")%></span></td>
-                    <td width="70px" align="center">
-                        <span><%#Eval("SuperUser")%></span></td>
+                    <td width="100px" align="center">
+                        <span><%#Eval("SuperUser")%></span>
+                        <asp:LinkButton ID="UpSuper" runat="server" onclick="UpSuper_Click">提升</asp:LinkButton></td>
                     
                     </td>
                 </tr>

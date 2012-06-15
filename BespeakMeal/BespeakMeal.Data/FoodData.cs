@@ -79,12 +79,33 @@ namespace BespeakMeal.Data
 		}
 
 		/// <summary>
+		/// 获取食物单价
+		/// </summary>
+		/// <param name="foodid"></param>
+		public double GetFoodPriceByFoodId(int foodid)
+		{
+			return Session.CreateQuery("select FoodPrice from Food where FoodId = :foodid")
+				.SetInt32("foodid", foodid)
+				.List<Double>().First();
+
+		}
+
+		/// <summary>
 		/// 返回所有上架了的食物列表
 		/// </summary>
 		/// <returns></returns>
 		public IList<Food> GetAllFoodByStatus1() 
 		{
 			return Session.CreateQuery("from Food where Status = 1").List<Food>();
+		}
+
+		/// <summary>
+		/// 返回所有上架了的食物列表
+		/// </summary>
+		/// <returns></returns>
+		public IList<Food> GetAllFoodByStatus1asc()
+		{
+			return Session.CreateQuery("from Food where Status = 1 order by FoodPrice asc").List<Food>();
 		}
 
 		/// <Query>

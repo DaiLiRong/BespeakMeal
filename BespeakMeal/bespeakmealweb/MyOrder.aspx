@@ -29,11 +29,11 @@ AutoEventWireup="true" CodeFile="MyOrder.aspx.cs" Inherits="MyOrder" %>
                 </tr>
                 <tr>
                     <td width="120px">
-                        <span style="color:Fuchsia"><%#Eval("OrderReference")%>
+                        <span style="font-size:small;color:Gray"><%#Eval("OrderReference")%>
                         </span>
                     </td>
                     <td width="130px">
-                        <span style="font-family:Tahoma;color:Blue"><%#Eval("OrderTime")%></span>
+                        <span style="font-size:small;color:Blue"><%#Eval("OrderTime")%></span>
                     </td>
                     <td width="100px">
                         <span style="font-size:large;color:Red;font-family:Tahoma"><%#Eval("FoodNum")%></span></td>

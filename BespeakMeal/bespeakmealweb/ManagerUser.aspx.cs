@@ -24,4 +24,13 @@ public partial class _Default : System.Web.UI.Page
 			UserList.DataBind();
 		}
     }
+	protected void UpSuper_Click(object sender, EventArgs e)
+	{
+		LinkButton lbton = (LinkButton)sender;
+		DataListItem gvr = (DataListItem)lbton.Parent;
+		int userindex = gvr.ItemIndex;
+		User user = _user.GetUserById(userlist[userindex].UserId);
+		user.SuperUser = 1;
+		_user.UpdateUser(user);
+	}
 }
